@@ -1,7 +1,5 @@
 import axios from 'axios';
-import type { AxiosResponse } from 'axios';
 import type { Movie } from '../types/movie';
-
 
 interface TmdbApiResponse {
   results: Movie[];
@@ -17,7 +15,7 @@ const apiClient = axios.create({
 } );
 
 export const fetchMovies = async (query: string): Promise<Movie[]> => {
-  const response: AxiosResponse<TmdbApiResponse> = await apiClient.get(
+  const response = await apiClient.get<TmdbApiResponse>(
     '/search/movie',
     {
       params: {
